@@ -40,8 +40,6 @@ books.get('/seed', (req, res) => {
 })
 
 
-
-
 // Index:
 books.get('/:id', (req, res) => {
   Book.findById(req.params.id)
@@ -68,16 +66,15 @@ books.put('/:id', (req, res) => {
 books.delete('/:id', (req, res) => {
     Book.findByIdAndDelete(req.params.id) 
       .then(deletedBook => { 
-        res.status(303).redirect('/books')
+        res.json('/books')
       })
   })
 
   // CREATE
   books.post('/', (req, res) => {
-   
-    console.log(req.body, "---")
+       console.log(req.body, "---")
     Book.create(req.body)
-    res.redirect('/books')
+    res.json('/books')
   })
   
 
